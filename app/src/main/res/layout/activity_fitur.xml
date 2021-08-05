@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fiturLayoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fiturTxtInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Fitur"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrymary" />
+
+    <LinearLayout
+        android:layout_below="@+id/fiturTxtInformation"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+        <RelativeLayout
+            android:background="@color/colorPrymary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="40dp">
+
+            <com.example.kebunku.Custom.image
+                android:id="@+id/fiturCanvas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="370dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="380dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="170dp">
+
+                    <Button
+                        android:id="@+id/fiturBtnXmax"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/button"
+                        android:layout_marginTop="25dp"
+                        android:text="X +"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/colorPrymary" />
+
+                    <Button
+                        android:id="@+id/fiturBtnXmin"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="90dp"
+                        android:layout_marginTop="-30dp"
+                        android:background="@drawable/button"
+                        android:text="X -"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/colorPrymary" />
+
+                    <Button
+                        android:id="@+id/fiturBtnYmax"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button"
+                        android:text="Y +"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/fiturBtnYmin"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="90dp"
+                        android:layout_marginTop="-30dp"
+                        android:background="@drawable/button"
+                        android:text="Y -"
+                        android:textColor="@color/white" />
+
+
+                    <Button
+                        android:id="@+id/fiturBtnZmin"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button"
+                        android:text="Z +"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/fiturBtnZmax"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="90dp"
+                        android:layout_marginTop="-30dp"
+                        android:background="@drawable/button"
+                        android:text="Z -"
+                        android:textColor="@color/white" />
+
+
+
+                    <Button
+                        android:text="TANAM ON"
+                        android:id="@+id/fiturBtnTanamOn"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button2"
+                        android:layout_marginTop="10dp"
+                        android:textSize="10dp"/>
+
+                    <Button
+                        android:text="TANAM OFF"
+                        android:id="@+id/fiturBtnTanamOff"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="90dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button2"
+                        android:layout_marginTop="-30dp"
+                        android:textSize="10dp"/>
+
+                    <Button
+                        android:text="SIRAM ON"
+                        android:id="@+id/fiturBtnSiramOn"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button2"
+                        android:layout_marginTop="5dp"
+                        android:textSize="10dp"/>
+
+                    <Button
+                        android:text="SIRAM OFF"
+                        android:id="@+id/fiturBtnSiramOff"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="90dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button2"
+                        android:layout_marginTop="-30dp"
+                        android:textSize="10dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="230dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginTop="400dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="H:"
+                        android:textColor="@color/colorPrymary"
+                        android:textSize="15dp"
+                        android:layout_marginTop="5dp"/>
+
+                    <EditText
+                        android:id="@+id/fiturEdtH"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:inputType="numberSigned"
+                        android:singleLine="true"
+                        android:text="0"
+                        android:textSize="15dp"
+                        android:textColor="@color/colorPrymary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="V:"
+                        android:textColor="@color/colorPrymary"
+                        android:textSize="15dp"
+                        android:layout_marginTop="45dp"
+                        android:layout_marginStart="-140dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fiturEdtV"
+                        android:inputType="numberSigned"
+                        android:singleLine="true"
+                        android:textSize="15dp"
+                        android:text="0"
+                        android:textColor="@color/colorPrymary"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginStart="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="T:"
+                        android:textColor="@color/colorPrymary"
+                        android:textSize="15dp"
+                        android:layout_marginTop="75dp"
+                        android:layout_marginStart="-140dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fiturEdtT"
+                        android:inputType="numberSigned"
+                        android:singleLine="true"
+                        android:textSize="15dp"
+                        android:text="0"
+                        android:textColor="@color/colorPrymary"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginStart="5dp"/>
+                    <Button
+                        android:text="GO"
+                        android:id="@+id/fiturBtnGO"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="-100dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button"
+                        android:layout_marginTop="110dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Point:"
+                        android:textColor="@color/colorPrymary"
+                        android:textSize="15dp"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginStart="-100dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fiturPoint"
+                        android:inputType="numberSigned"
+                        android:singleLine="true"
+                        android:textSize="15dp"
+                        android:text="0"
+                        android:textColor="@color/colorPrymary"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginStart="5dp"/>
+
+                    <Button
+                        android:text="GO"
+                        android:id="@+id/fiturBtnGO2"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="-100dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button"
+                        android:layout_marginTop="190dp"/>
+
+                </LinearLayout>
+
+        </RelativeLayout>
+        
+
+            
+
+    
+
+
+
