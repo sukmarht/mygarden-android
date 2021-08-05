@@ -17,8 +17,8 @@ public class image extends androidx.appcompat.widget.AppCompatImageView {
     int rowHeight;
     int columnWidth;
 
-    int nColumn = 5;
-    int nRow = 5;
+    public int nColumn = 5;
+    public int nRow = 5;
 
     public int posRefX = 0, posRefY = 0;
     public int posActX = 0, posActY = 0;
