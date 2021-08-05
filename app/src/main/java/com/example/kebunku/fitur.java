@@ -3,7 +3,6 @@ package com.example.kebunku;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.math.MathUtils;
 
 import com.example.kebunku.Adapter.Command;
 import com.example.kebunku.Adapter.DataPosisi;
@@ -45,18 +45,17 @@ public class fitur extends AppCompatActivity{
             imageView.posActX = actx;
             imageView.posActY = acty;
             imageView.invalidate();
-            txtInfo.setText(String.format("X: %d, Y: %d", info.getInt("X_POSITION_CM"), info.getInt("Y_POSITION_CM")));
+            int actPoint = dataPosisi.update(info.getInt("X_POSITION_CM"),info.getInt("Y_POSITION_CM"),info.getInt("Z_POSITION_CM"));
+            txtInfo.setText(String.format("X: %d, Y: %d, Point: %d", info.getInt("X_POSITION_CM"), info.getInt("Y_POSITION_CM"), actPoint));
         } catch (JSONException e) {
             Log.d("DEBUGSUKMA",e.getMessage());
         }
     }
-
     @Override
     protected void onStart() {
         isActive = true;
         super.onStart();
     }
-
     @Override
     protected void onStop() {
         isActive = false;
@@ -91,16 +90,6 @@ public class fitur extends AppCompatActivity{
         Button BtnTanamOn = findViewById(R.id.fiturBtnTanamOn);
         Button BtnTanamOff = findViewById(R.id.fiturBtnTanamOff);
         Button BtnGo2 = findViewById(R.id.fiturBtnGO2);
-
-        BtnGo2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Point.getText().toString().isEmpty())  Point.setText("P1");
-                command.setCommand(dataPosisi.goByPoint(Integer.valueOf(Point.getText().toString())));
-                new Thread(new login.SendThread(command.toString())).start();
-
-            }
-        });
 
         BtnSiramOn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,22 +172,73 @@ public class fitur extends AppCompatActivity{
                 new Thread(new login.SendThread(command.toString())).start();
             }
         });
-       
-        imageView = findViewById(R.id.fiturCanvas);
-        imageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int[] data = imageView.getPosition(event.getX(), event.getY());
-                Log.d("DEBUG", data[0] + " ," + data[1]);
 
-                // update gambar lingkaran
-                imageView.posRefX = data[0];
-                imageView.posRefY = data[1];
+        imageView = findViewById(R.id.fiturCanvas);
+        imageView.setOnTouchListener((v, event) -> {
+            int[] position = imageView.getPosition(event.getX(), event.getY());
+            Log.d("DEBUG", position[0] + " ," + position[1]);
+
+            // update gambar lingkaran
+            imageView.posRefX = position[0];
+            imageView.posRefY = position[1];
+            imageView.invalidate();
+
+            command.setCommand(dataPosisi.goByGrid(position[0], position[1], imageView.getSize()[0], imageView.getSize()[1]));
+            new Thread(new login.SendThread(command.toString())).start();
+            return false;
+        });
+        BtnGo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Point.getText().toString().isEmpty())  Point.setText("1");
+                int pointToGo = Integer.parseInt(Point.getText().toString());
+                pointToGo = MathUtils.clamp(pointToGo, 1, dataPosisi.maxPoint);
+
+                int[] position = dataPosisi.getPosByPoint(pointToGo);
+                imageView.posRefX = position[0];
+                imageView.posRefY = position[1];
                 imageView.invalidate();
 
-                command.setCommand(dataPosisi.goByGrid(data[0], data[1], imageView.getSize()[0], imageView.getSize()[1]));
-                new Thread(new login.SendThread(command.toString())).start();
-                return false;
+                int delayDiam = 3000; // millliseconds
+
+                int finalPointToGo = pointToGo;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(finalPointToGo > dataPosisi.point){
+                            for (int now = dataPosisi.point; now <= finalPointToGo; now++){
+                                int[] newPosition = dataPosisi.getPosByPoint(now);
+                                Log.d("DEBUGSUKMA","now: " + now +",togo: "+finalPointToGo+"newPosition: "+newPosition[0]+","+newPosition[1]);
+
+                                command.setCommand(dataPosisi.goByGrid(newPosition[0], newPosition[1], imageView.getSize()[0], imageView.getSize()[1]));
+                                new Thread(new login.SendThread(command.toString())).start();
+
+                                while (dataPosisi.x != dataPosisi.getCmByPos(newPosition[0], newPosition[1], imageView.getSize()[0], imageView.getSize()[1])[0]
+                                        || dataPosisi.y != dataPosisi.getCmByPos(newPosition[0], newPosition[1], imageView.getSize()[0], imageView.getSize()[1])[1]){}
+                                try {
+                                    Thread.sleep(delayDiam);
+                                } catch (InterruptedException e) {
+                                    Log.d("DEBUGSUKMA", e.getMessage());
+                                }
+                            }
+                        } else {
+                            for (int now = dataPosisi.point; now >= finalPointToGo; now--){
+                                int[] newPosition = dataPosisi.getPosByPoint(now);
+
+                                command.setCommand(dataPosisi.goByGrid(newPosition[0], newPosition[1], imageView.getSize()[0], imageView.getSize()[1]));
+                                new Thread(new login.SendThread(command.toString())).start();
+
+                                while (dataPosisi.x != dataPosisi.getCmByPos(newPosition[0], newPosition[1], imageView.getSize()[0], imageView.getSize()[1])[0]
+                                        || dataPosisi.y != dataPosisi.getCmByPos(newPosition[0], newPosition[1], imageView.getSize()[0], imageView.getSize()[1])[1]){}
+                                try {
+                                    Thread.sleep(delayDiam);
+                                } catch (InterruptedException e) {
+                                    Log.d("DEBUGSUKMA", e.getMessage());
+                                }
+                            }
+                        }
+                    }
+                }).start();
             }
         });
 
