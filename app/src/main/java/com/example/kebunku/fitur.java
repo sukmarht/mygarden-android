@@ -29,6 +29,7 @@ public class fitur extends AppCompatActivity{
     private EditText EdtV;
     private EditText EdtT;
     private EditText Point;
+    private EditText Delay;
 
     public static DataPosisi dataPosisi;
 
@@ -85,12 +86,14 @@ public class fitur extends AppCompatActivity{
         EdtV = findViewById(R.id.fiturEdtV);
         EdtT = findViewById(R.id.fiturEdtT);
         Point = findViewById(R.id.fiturPoint);
+        Delay = findViewById(R.id.fiturDelay);
         Button BtnSiramOn = findViewById(R.id.fiturBtnSiramOn);
         Button BtnSiramOff = findViewById(R.id.fiturBtnSiramOff);
         Button BtnTanamOn = findViewById(R.id.fiturBtnTanamOn);
         Button BtnTanamOff = findViewById(R.id.fiturBtnTanamOff);
         Button BtnGo2 = findViewById(R.id.fiturBtnGO2);
 
+       
         BtnSiramOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,7 +202,8 @@ public class fitur extends AppCompatActivity{
                 imageView.posRefY = position[1];
                 imageView.invalidate();
 
-                int delayDiam = 3000; // millliseconds
+                //int delayDiam = 1000;  // millliseconds
+                int delayDiam = Integer.parseInt(Delay.getText().toString());
 
                 int finalPointToGo = pointToGo;
                 new Thread(new Runnable() {

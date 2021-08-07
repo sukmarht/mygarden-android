@@ -66,9 +66,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="1dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="170dp">
+
 
                     <Button
                         android:id="@+id/fiturBtnXmax"
@@ -133,8 +134,6 @@
                         android:text="Z -"
                         android:textColor="@color/white" />
 
-
-
                     <Button
                         android:text="TANAM ON"
                         android:id="@+id/fiturBtnTanamOn"
@@ -178,6 +177,27 @@
                         android:background="@drawable/button2"
                         android:layout_marginTop="-30dp"
                         android:textSize="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Timer:"
+                        android:textColor="@color/colorPrymary"
+                        android:textSize="15sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fiturDelay"
+                        android:inputType="numberSigned"
+                        android:singleLine="true"
+                        android:textSize="15sp"
+                        android:text="0"
+                        android:textColor="@color/colorPrymary"
+                        android:layout_marginTop="-35dp"
+                        android:layout_marginStart="60dp"/>
 
                 </LinearLayout>
 
